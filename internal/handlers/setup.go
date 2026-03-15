@@ -27,8 +27,8 @@ func RegisterAll(registry *worker.Registry, conduitURL, conduitToken string) {
 		// Transaction publisher — complex editor/notification/feed logic.
 		registry.Register("PhabricatorApplicationTransactionPublishWorker", NewConduitDelegateHandler(conduit))
 
-		// Herald webhook — can be handled by go-webhook directly,
-		// but also support delegation for deployments without go-webhook.
+		// Herald webhook — can be handled by github.com/soulteary/gorge-webhook directly,
+		// but also support delegation for deployments without github.com/soulteary/gorge-webhook.
 		registry.Register("HeraldWebhookWorker", NewConduitDelegateHandler(conduit))
 	}
 }
