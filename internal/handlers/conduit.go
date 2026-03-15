@@ -58,7 +58,7 @@ func (c *ConduitClient) Call(ctx context.Context, method string, params map[stri
 	if err != nil {
 		return nil, fmt.Errorf("http: %w", err)
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 
 	respBody, err := io.ReadAll(resp.Body)
 	if err != nil {

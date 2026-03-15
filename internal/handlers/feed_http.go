@@ -51,7 +51,7 @@ func NewFeedHTTPHandler() worker.TaskHandler {
 		if err != nil {
 			return fmt.Errorf("http request to %s failed: %w", td.URI, err)
 		}
-		defer resp.Body.Close()
+		defer func() { _ = resp.Body.Close() }()
 
 		if resp.StatusCode >= 200 && resp.StatusCode < 300 {
 			log.Printf("[feed-http] delivered storyID=%d to %s status=%d", td.StoryID, td.URI, resp.StatusCode)

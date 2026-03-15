@@ -27,10 +27,10 @@ type Consumer struct {
 }
 
 type ConsumerStats struct {
-	Processed   int64    `json:"processed"`
-	Failed      int64    `json:"failed"`
-	Active      int32    `json:"active"`
-	Supported   []string `json:"supported"`
+	Processed int64    `json:"processed"`
+	Failed    int64    `json:"failed"`
+	Active    int32    `json:"active"`
+	Supported []string `json:"supported"`
 }
 
 func NewConsumer(

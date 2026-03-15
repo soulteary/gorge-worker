@@ -40,7 +40,13 @@ func main() {
 	go consumer.Run(ctx)
 
 	e := echo.New()
-	e.Use(middleware.Logger())
+	e.Use(middleware.RequestLoggerWithConfig(middleware.RequestLoggerConfig{
+		LogStatus: true, LogURI: true, LogMethod: true,
+		LogValuesFunc: func(c echo.Context, v middleware.RequestLoggerValues) error {
+			c.Logger().Infof("%s %s %d", v.Method, v.URI, v.Status)
+			return nil
+		},
+	}))
 	e.Use(middleware.Recover())
 
 	httpapi.RegisterRoutes(e, &httpapi.Deps{

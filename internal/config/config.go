@@ -15,9 +15,9 @@ type Config struct {
 	TaskQueueToken string
 
 	// Worker behaviour
-	LeaseLimit    int // tasks per lease cycle
+	LeaseLimit     int // tasks per lease cycle
 	PollIntervalMs int
-	MaxWorkers    int // concurrent task processors
+	MaxWorkers     int // concurrent task processors
 	IdleTimeoutSec int // hibernate after this many seconds idle
 
 	// Conduit gateway (for workers that need to call back to Phorge)
@@ -30,16 +30,16 @@ type Config struct {
 
 func LoadFromEnv() *Config {
 	return &Config{
-		ListenAddr:     envStr("LISTEN_ADDR", ":8170"),
-		ServiceToken:   envStr("SERVICE_TOKEN", ""),
-		TaskQueueURL:   envStr("TASK_QUEUE_URL", "http://task-queue:8090"),
-		TaskQueueToken: envStr("TASK_QUEUE_TOKEN", ""),
-		LeaseLimit:     envInt("LEASE_LIMIT", 4),
-		PollIntervalMs: envInt("POLL_INTERVAL_MS", 1000),
-		MaxWorkers:     envInt("MAX_WORKERS", 4),
-		IdleTimeoutSec: envInt("IDLE_TIMEOUT_SEC", 180),
-		ConduitURL:     envStr("CONDUIT_URL", ""),
-		ConduitToken:   envStr("CONDUIT_TOKEN", ""),
+		ListenAddr:      envStr("LISTEN_ADDR", ":8170"),
+		ServiceToken:    envStr("SERVICE_TOKEN", ""),
+		TaskQueueURL:    envStr("TASK_QUEUE_URL", "http://task-queue:8090"),
+		TaskQueueToken:  envStr("TASK_QUEUE_TOKEN", ""),
+		LeaseLimit:      envInt("LEASE_LIMIT", 4),
+		PollIntervalMs:  envInt("POLL_INTERVAL_MS", 1000),
+		MaxWorkers:      envInt("MAX_WORKERS", 4),
+		IdleTimeoutSec:  envInt("IDLE_TIMEOUT_SEC", 180),
+		ConduitURL:      envStr("CONDUIT_URL", ""),
+		ConduitToken:    envStr("CONDUIT_TOKEN", ""),
 		TaskClassFilter: splitCSV(envStr("TASK_CLASS_FILTER", "")),
 	}
 }
