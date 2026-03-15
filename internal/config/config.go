@@ -10,7 +10,7 @@ type Config struct {
 	ListenAddr   string
 	ServiceToken string
 
-	// go-task-queue connection
+	// github.com/soulteary/gorge-task-queue connection
 	TaskQueueURL   string
 	TaskQueueToken string
 
